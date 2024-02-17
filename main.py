@@ -29,9 +29,16 @@ def main():
         By.XPATH, '//div[@class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 my-5"]//button[not(@disabled)]'
     )
 
-    if appointments:
-        appointment = random.choice(appointments)
-        appointment.click()
+    if not appointments:
+        raise Exception('no appointments found')
+
+    appointment = random.choice(appointments)
+    appointment.click()
+
+    complete_button = browser.find_element(
+        By.XPATH, '//*[@id="__next"]/div[1]/div[2]/div[2]/div[2]/div/div[3]/span[2]/button'
+    )
+    complete_button.click()
 
 
 if __name__ == '__main__':
